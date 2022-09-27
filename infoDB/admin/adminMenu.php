@@ -3,7 +3,7 @@ include "adminFunctions.php";
 include "requestComprobations.php";
 
 session_start();
-if(!$_SESSION["login"]){
+if(!$_SESSION["login"] && !$_SESSION["admin"]){
     header("Location: index.php");
 }
 //controll de menu 

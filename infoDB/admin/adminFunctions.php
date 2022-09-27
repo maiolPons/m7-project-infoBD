@@ -80,22 +80,27 @@ function mainCreatorProfessor(){
                     if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
                         if(crearProfesor($_POST,$newName)){
                             echo "<p class='success'>Profesor Creat Correctament!</p>";
+                            $_GET['opcio']="llistar";
                         }
                         else{
                             echo "<p class='errorFormulari'>La Peticio no s'ha pogut prosessar!</p>";
+                            $_GET['opcio']="crear";
                         }
                         
                     } else {
                         echo "<p class='errorFormulari'>Error amb la imatge!</p>";
+                        $_GET['opcio']="crear";
                     }
                 }
             }
             else{
-                echo "<p class='error Formulari'>El dni ja esta registrat!</p>";
+                echo "<p class='errorFormulari'>El dni ja esta registrat!</p>";
+                $_GET['opcio']="crear";
             }
         }
         else{
             echo "<p class='errorFormulari'>Tots els camps son obligatoris!</p>";
+            $_GET['opcio']="crear";
         }
     }
 }
@@ -186,6 +191,7 @@ function comprobacioErrorsModifcarProfesor(){
                     if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
                         if(updateProfesorInfo($_POST,$newName,$_POST["oldDni"])){
                             echo "<p class='success'>El profesor s'ha actualitzat correctament!</p>"; 
+                            $_GET['opcio']="modificar";
                         }else{
                             echo "<p class='errorFormulari'>Error al actualitzar el profesor!</p>"; 
                         }
@@ -207,25 +213,31 @@ function comprobacioErrorsModifcarProfesor(){
                         rename($_POST["oldFotoName"],"../media/professors/".$newName);
                         if(updateProfesorInfo($_POST,$newName,$_POST["oldDni"])){
                             echo "<p class='success'>El profesor s'ha actualitzat correctament!</p>"; 
+                            $_GET['opcio']="modificar";
                         }
                         else{
                             echo "<p class='errorFormulari'>Error al actualitzar el profesor!</p>"; 
+                            $_GET['opcio']="modificar";
                         }
                     }else{
                         if(updateProfesorInfo($_POST,$_POST["oldFotoName"],$_POST["oldDni"])){
                             echo "<p class='success'>El profesor s'ha actualitzat correctament!</p>"; 
+                            $_GET['opcio']="modificar";
                         }
                         else{
                             echo "<p class='errorFormulari'>Error al actualitzar el profesor!</p>"; 
+                            $_GET['opcio']="modificar";
                         }
                     }
                 }
                 else{
                     echo "<p class='errorFormulari'>El dni ja existeix!</p>"; 
+                    $_GET['opcio']="modificar";
                 }
             }
             else{
                 echo "<p class='errorFormulari'>Tots els camps son obligatoris!</p>"; 
+                $_GET['opcio']="modificar";
             }
         }
     }
@@ -306,7 +318,8 @@ function confirmacioEliminar(){
             mysqli_error($conexion);
         }else{
             @unlink("../media/professors/".$foto);
-            echo "<p class='success'>Profesor eliminar correctament</p>";
+            echo "<p class='success'>Profesor eliminar correctament</p>"; 
+            $_GET['opcio']="eliminar";
         }
     }
 }
@@ -361,7 +374,7 @@ function cursos(){
         echo '<a href="adminMenu.php?opcio=' . 'llistar' . '">llistar</a> |';
         echo '<a href="adminMenu.php?opcio=' . 'crear' . '">crear</a> |';
         echo '<a href="adminMenu.php?opcio=' . 'modificar' . '">modificar</a> |';
-        echo '<a href="adminMenu.php?opcio=' . 'eliminar' . '">eliminar</a> |';
+        echo '<a href="adminMenu.php?opcio=' . 'eliminar' . '">Des/Activar</a> |';
     echo"</nav>";
     //if(isset($_GET['opcio'])){
     //    $_SESSION["opcio"]=$_GET['opcio'];
@@ -417,17 +430,21 @@ function mainCreatorCursos(){
             if(comprobardni('cursos',$_POST["codi"])){
                 if(crearcurs($_POST)){
                     echo "<p class='success'>Curs Creat Correctament!</p>";
+                    $_GET['opcio']="llistar";
                 }
                 else{
                     echo "<p class='errorFormulari'>La Peticio no s'ha pogut prosessar!</p>";
+                    $_GET['opcio']="crear";
                 }
             }
             else{
-                echo "<p class='error Formulari'>El codi ja esta registrat!</p>";
+                echo "<p class='errorFormulari'>Error amb el codi!</p>";
+                $_GET['opcio']="crear";
             }
         }
         else{
             echo "<p class='errorFormulari'>Tots els camps son obligatoris!</p>";
+            $_GET['opcio']="crear";
         }
     }
 }
@@ -441,8 +458,8 @@ function crearcurs($informacioCurs){
     $hores=$informacioCurs["hores"];
     $dataInici=$informacioCurs["dataInici"];
     $dataFinal=$informacioCurs["dataFinal"];
-    $sql = "INSERT INTO `cursos`(`codi`, `nom`, `descripcio`, `hores`, `dataInici`, `dataFinal`, `CursProfessorFK`) VALUES ('$codi','$nom','$descripcio','$hores','$dataInici','$dataFinal',NULL)";
-    var_dump($sql);
+    $sql = "INSERT INTO `cursos`(`codi`, `nom`, `descripcio`, `hores`, `dataInici`, `dataFinal`, `CursProfessorFK`,`estat`) VALUES ('$codi','$nom','$descripcio','$hores','$dataInici','$dataFinal',NULL,'1')";
+    //var_dump($sql);
     $consulta = mysqli_query($conexion,$sql);
 
     if($consulta == false){
@@ -530,6 +547,7 @@ function comprobacioErrorsModifcarCursos(){
             if(comprobardniModificar('cursos',$_POST["codi"],$_POST["oldCodi"])){
                 if(updateProfesorCursos($_POST)){
                     echo "<p class='success'>Curs modificat correctament</p>";
+                    $_GET['opcio']="modificar";
                 }else{
                     echo "<p class='warning'>Error en la modificacio!</p>";
                 }
@@ -575,7 +593,7 @@ function updateProfesorCursos($informacioCurs){
 //formulari de confirmacio i peticio per elimiar profesor
 function confirmacioEliminarCurs(){
     if(isset($_GET['eliminarCodi'])){
-        echo "<p class='warning'>Estas segur que vols eliminar Aquest usuari?</p>";
+        echo "<p class='warning'>Estas segur que vols Cambiar l'estat Aquest Curs?</p>";
         echo' <form action="adminmenu.php" method="POST" enctype="multipart/form-data">';
                 echo'<label for="eliminarCodi">Si</label>';
                 echo'<input type="radio" name="eliminarCodi" value="si">';
@@ -588,12 +606,28 @@ function confirmacioEliminarCurs(){
     if(isset($_POST["eliminarCodi"])){
         $codi= $_POST["eliminarCodi"];
         $conexion = concetarBD();
-        $sql = "DELETE FROM `cursos` WHERE `codi`='$codi'";
-        $consulta = mysqli_query($conexion,$sql);
+        //$sql = "DELETE FROM `cursos` WHERE `codi`='$codi'";
+        
+        
+
+        try {
+            $sql = "SELECT `estat` FROM cursos WHERE `codi`='$codi'";
+            $consulta = mysqli_query($conexion,$sql);
+            $registre = mysqli_fetch_row($consulta);
+            if($registre[0]==1){
+                $sql = "UPDATE `cursos` SET `estat`='0' WHERE `codi`='$codi'";
+            }else{
+                $sql = "UPDATE `cursos` SET `estat`='1' WHERE `codi`='$codi'";
+            }
+            mysqli_query($conexion,$sql);
+        } catch (Exception $e) {
+            echo 'Excepcio capturada: ',  $e->getMessage(), "\n";
+        }
         if($consulta == false){
             mysqli_error($conexion);
         }else{
-            echo "<p class='success'>Curs eliminat correctament</p>";
+            echo "<p class='success'>Curs Des/Activat correctament</p>";
+            $_GET['opcio']="eliminar";
         }
     }
 }
@@ -642,13 +676,13 @@ function llistarTaulacursos(){
             echo "<table>";
                 echo "<tr>";
                 
-                    echo "<th>codi</th><th>nom</th><th>descripcio</th><th>hores</th><th>Data inici</th><th>Data final</th><th>Profesor</th>";
+                    echo "<th>codi</th><th>nom</th><th>descripcio</th><th>hores</th><th>Data inici</th><th>Data final</th><th>Profesor</th><th>Estat</th>";
                     if(isset($_GET["opcio"])){
                     if($_GET["opcio"]=="modificar"){
                         echo '<th>Modificar</td>';
                     }
                     if($_GET["opcio"]=="eliminar"){
-                        echo '<th>Eliminar</td>';
+                        echo '<th>Des/Activar</td>';
                     }
                     echo "</tr>";
                 }
@@ -663,12 +697,17 @@ function llistarTaulacursos(){
                 echo "<td>$row[dataInici]</td>";
                 echo "<td>$row[dataFinal]</td>";
                 echo "<td>$row[CursProfessorFK]</td>";
+                $estat = "Desactivat";
+                if($row["estat"]==1){
+                    $estat = "Activat";
+                }
+                echo "<td>$estat</td>";
                 if(isset($_GET["opcio"])){
                 if($_GET["opcio"]=="modificar"){
                     echo '<td><a href="adminMenu.php?modificarCodi=' . $row["codi"] . '">Modificar</a></td>';
                 }
                 if($_GET["opcio"]=="eliminar"){
-                    echo '<td><a href="adminMenu.php?eliminarCodi=' . $row["codi"] . '">Eliminar</a></td>';
+                    echo '<td><a href="adminMenu.php?eliminarCodi=' . $row["codi"] . '">Des/Activar</a></td>';
                 }
                 echo "</tr>";
                 }           
@@ -788,7 +827,7 @@ function buscarNormal(){
                         echo '<th>Modificar</td>';
                     }
                     if($_POST["opcio"]=="eliminar"){
-                        echo '<th>Eliminar</td>';
+                        echo '<th>Des/Activar</td>';
                     }
                     echo "</tr>";
                 }
@@ -808,7 +847,7 @@ function buscarNormal(){
                     echo '<td><a href="adminMenu.php?modificarCodi=' . $row["codi"] . '">Modificar</a></td>';
                 }
                 if($_POST["opcio"]=="eliminar"){
-                    echo '<td><a href="adminMenu.php?eliminarCodi=' . $row["codi"] . '">Eliminar</a></td>';
+                    echo '<td><a href="adminMenu.php?eliminarCodi=' . $row["codi"] . '">Des/Activar</a></td>';
                 }
                 echo "</tr>";
                 }           

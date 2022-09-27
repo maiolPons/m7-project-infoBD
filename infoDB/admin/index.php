@@ -8,6 +8,7 @@ if(isset($_POST["Usuari"]) && isset($_POST["pass"])){
     if($registre!=null){
         #crear variables de sessio
         $_SESSION["login"]=true;
+        $_SESSION["admin"]=true;
         $_SESSION["usuari"]=$registre;
         $_SESSION["menu"]='principal';
         #reenviar a la pagina portal.php

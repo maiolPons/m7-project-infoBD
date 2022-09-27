@@ -28,7 +28,7 @@ if(isset($_GET['menu'])!=null){
     <link rel="stylesheet" href="login.css">
     <link rel="icon" type="image/x-icon" href="img/fav.png">
     <title>Login</title>
-    <link rel="stylesheet" href="adminStyle.css">
+    <link rel="stylesheet" href="../style/styles.css">
 </head>
     <body>
         <div class="main">

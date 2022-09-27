@@ -1,8 +1,8 @@
 <?php
 function crearAlumne($formCreacio,$foto){
-    if(!empty($formCreacio["dni"]) && !empty($formCreacio["contrasenya"]) && !empty($formCreacio["nom"]) && !empty($formCreacio["edat"]) && !empty($formCreacio["cognoms"]) && !empty($formCreacio["correuElectronic"]) && !empty($foto)){
+    if(!empty($_POST["dni"]) && !empty($_POST["contrasenya"]) && !empty($_POST["nom"]) && !empty($_POST["Edat"]) && !empty($_POST["cognoms"]) && !empty($_POST["correuElectronic"]) && !empty($_FILES)){
         if(comprobarDniCorreu($formCreacio["correuElectronic"],$formCreacio["dni"])){
-            if(comprovarImatge($_POST["dni"],$foto["foto"])){
+            if(comprovarImatge($foto["foto"])){
                //genera nou nom per la foto
                $newName = generateFileName($_POST["dni"],$foto["foto"]["name"]);
                $target_dir = "media/alumnes/";
@@ -54,7 +54,7 @@ function insetNouAlumne($formCreacio,$fotoNom){
     $correuElectronic=$formCreacio["correuElectronic"];
     $nom=$formCreacio["nom"];
     $cognom=$formCreacio["cognoms"];
-    $sql = "INSERT INTO `alumnes`(`dni`, `nom`, `cognom`, `fotografia`, `edat`, `correuElectronic`, `contrasenya) VALUES ('$dni','$nom','$cognom','$fotoNom','$edat','$correuElectronic','$pass')";
+    $sql = "INSERT INTO `alumnes`(`dni`, `nom`, `cognom`, `fotografia`, `edat`, `correuElectronic`, `contrasenya`,`estat`) VALUES ('$dni','$nom','$cognom','$fotoNom','$edat','$correuElectronic','$pass','1')";
     $consulta = mysqli_query($conexion,$sql);
 
     
@@ -62,8 +62,8 @@ function insetNouAlumne($formCreacio,$fotoNom){
         mysqli_error($conexion);
         return(false);
     }else{
-        echo "<p class='succes'>Usuari creat Correctament!</p>";
-
+        header("Location: index.php");
+        return(true);
     }
 } 
 function generateFileName($dni,$fotoName){
@@ -74,7 +74,7 @@ function generateFileName($dni,$fotoName){
     return($newName);
 }
 //Comprovacions de fotografia
-function comprovarImatge($foto){;
+function comprovarImatge($foto){
     $target_file = basename($foto["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

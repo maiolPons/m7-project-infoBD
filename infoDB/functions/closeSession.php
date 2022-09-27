@@ -9,8 +9,9 @@
     }else{
         session_destroy();
         #reenviar a la pagina index.php
-        header("Location: index.php");
+        header("Location: ../index.php");
     }
+    
     
     
 ?>

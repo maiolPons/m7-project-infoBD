@@ -1,7 +1,8 @@
 <?php
+include 'functions/loginComprobations.php';
 include "alumne/registrar.php";
 if(isset($_POST["CrearAlumne"])){
-    crearAlumne($_POST,$_FILES);
+    $resultat=crearAlumne($_POST,$_FILES);
 }
 ?>
 <!DOCTYPE html>

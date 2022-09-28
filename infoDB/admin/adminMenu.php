@@ -32,6 +32,7 @@ if(isset($_GET['menu'])!=null){
 </head>
     <body>
         <div class="main">
+        <header><?php echo "Benvingut administrador";  ?></header>
         <?php
         menuPrincipal();
         
@@ -54,6 +55,7 @@ if(isset($_GET['menu'])!=null){
         
         ?>
         </div> 
+        <footer><p>Info BDN</p><p>Telefon: 932 20 03 77</p><p>Contacta amb l'encarregat : admin@gmail.ru</p></footer>
     </body>
     
 </html>

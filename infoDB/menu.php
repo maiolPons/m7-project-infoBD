@@ -17,26 +17,36 @@ if(isset($_GET["opcio"])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/styles.css">
     <title>Document</title>
 </head>
 <body>
+    <header><?php echo "Benvingut ".$_SESSION["login"]." : ".$_SESSION["usuari"]["nom"];  ?></header>
+    <div class="mainMenu">
+        <div class="navegacio">
+            <img src="media/logo/InfoBDN-1.png" class="logo">
+            <?php if($_SESSION["login"]=="professor"){menuAlunes();}?>
+            <?php if($_SESSION["login"]=="alumne"){menuAlunes();}?>
+        </div>
+        <footer><p>Info BDN</p><p>Telefon: 932 20 03 77</p><p>Contacta amb l'encarregat : admin@gmail.ru</p></footer>
     <?php
-
-    if($_SESSION["login"]=="professor"){
-        
-    }
-    if($_SESSION["login"]=="alumne"){
-        menuAlunes();
-        if($_SESSION["menu"]=="alta"){
-            menuAlta();
+        if($_SESSION["login"]=="professor"){
+            
         }
-        if($_SESSION["menu"]=="baixa"){
-
+        if($_SESSION["login"]=="alumne"){
+            
+            if($_SESSION["menu"]=="alta"){
+                menuAlta();
+            }
+            if($_SESSION["menu"]=="baixa"){
+                menuAlta();
+            }
+            if($_SESSION["menu"]=="notes"){
+                menuAlta();
+            }
         }
-        if($_SESSION["menu"]=="notes"){
-
-        }
-    }
-    ?>
+        ?>
+    </div>
+    
 </body>
 </html>

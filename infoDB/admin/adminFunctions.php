@@ -2,12 +2,14 @@
 
 //mostrar menu principal admin
 function menuPrincipal(){
-    echo '<a href="adminMenu.php?menu=' . 'principal' . '"><img src="../media/logo/InfoBDN-1.png" class="logo"></a> |';
+    echo '<div class="navegacio">';
+    echo '<a href="adminMenu.php?menu=' . 'principal' . '"><img src="../media/logo/InfoBDN-1.png" class="logo"></a>';
     echo "<nav>";   
-    echo '<a href="adminMenu.php?menu=' . 'Profesorat' . '">Profesorat</a> |';
-    echo '<a href="adminMenu.php?menu=' . 'cursos' . '">cursos</a> |';
+    echo '<a href="adminMenu.php?menu=' . 'Profesorat' . '">Profesorat</a>';
+    echo '<a href="adminMenu.php?menu=' . 'cursos' . '">cursos</a>'; 
     echo '<a href="../functions/closeSession.php">Tancar sessio</a>';
     echo "</nav>";
+    echo '</div>';
 }
 //mostra per defecte 
 function principal(){
@@ -15,12 +17,16 @@ function principal(){
 }
 //menu opcions admin de profesorat
 function Profesorat(){
-    echo"<nav>";
-        echo '<a href="adminMenu.php?opcio=' . 'llistar' . '">llistar</a> |';
-        echo '<a href="adminMenu.php?opcio=' . 'crear' . '">crear</a> |';
-        echo '<a href="adminMenu.php?opcio=' . 'modificar' . '">modificar</a> |';
-        echo '<a href="adminMenu.php?opcio=' . 'eliminar' . '">eliminar</a> |';
-    echo"</nav>";
+    echo '<div class="navegaciolateral">';
+        echo"<div>";
+            echo"<nav>";
+                echo '<a href="adminMenu.php?opcio=' . 'llistar' . '">llistar</a>';
+                echo '<a href="adminMenu.php?opcio=' . 'crear' . '">crear</a>';
+                echo '<a href="adminMenu.php?opcio=' . 'modificar' . '">modificar</a>';
+                echo '<a href="adminMenu.php?opcio=' . 'eliminar' . '">eliminar</a>';
+            echo"</nav>";
+        echo"<div>";
+    echo '</div>';
     //en cas de modificacio
     formulariModificarProfesor();
     comprobacioErrorsModifcarProfesor();
@@ -650,7 +656,7 @@ function Eliminarcurs(){
 
 //mostrar cursos
 function mostrarLlistacursos(){
-    echo "<div class='buscadorTaula'>";
+            echo "<div class='buscadorTaula'>";
                 echo "<div class='buscadorf'>";
                     buscador();
                 echo "<div>";

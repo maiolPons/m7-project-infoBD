@@ -1,9 +1,9 @@
 <?php
     function menuAlunes(){
         echo"<nav>";
-            echo "<a href='menu.php?opcio=" . "alta" . "'>Donarme d'alta</a> |";
-            echo '<a href="menu.php?opcio=' . 'baixa' . '">Donarme de baixa</a> |';
-            echo '<a href="menu.php?opcio=' . 'notes' . '">Notes</a> |';
+            echo "<a href='menu.php?opcio=" . "alta" . "'>Donarme d'alta</a>";
+            echo '<a href="menu.php?opcio=' . 'baixa' . '">Donarme de baixa</a>';
+            echo '<a href="menu.php?opcio=' . 'notes' . '">Notes</a>';
             echo '<a href="functions/closeSession.php">Tancar Sessio</a>';
         echo"</nav>";
     }
@@ -12,31 +12,31 @@
     }
     function monstrarTaula(){
         echo "<div class='buscadorTaula'>";
-        echo "<div class='buscadorf'>";
-            buscador();
-        echo "<div>";
-        echo "<div class='contenidorTaula'>";
-            echo "<div class='contenidorTaula2'>";
-            llistarTaulacursosPerAlumne();
+            echo "<div class='buscadorf'>";
+                buscador();
+            echo "<div>";
+            echo "<div class='contenidorTaula'>";
+                echo "<div class='contenidorTaula2'>";
+                llistarTaulacursosPerAlumne();
+                echo "</div>";
             echo "</div>";
         echo "</div>";
-    echo "</div>";
     }
     function buscador(){
         ?>
             <div class="main">
                 <!--Formulari de creacio de profesorat-->
-                <form class="buscadorform" action="adminmenu.php" method="POST" enctype="multipart/form-data">
+                <form class="buscadorform" action="menu.php" method="POST" enctype="multipart/form-data">
                     <label for="buscar">Buscar: </label><br>
                     <input type="text" name="buscar" require><br>
                     <input name="buscarcheck" type="hidden" value="buscarcheck">
                     <?php
                     if(isset($_SESSION["menu"])){
                         if($_SESSION["menu"]=="alta"){
-                            echo '<input name="opcio" type="hidden" value="modificar">';
+                            echo '<input name="opcio" type="hidden" value="alta">';
                         }
                         if($_SESSION["menu"]=="baixa"){
-                            echo '<input name="opcio" type="hidden" value="eliminar">';
+                            echo '<input name="opcio" type="hidden" value="baixa">';
                         }else{
                             echo '<input name="opcio" type="hidden" value="notes">';
                         }
@@ -50,8 +50,19 @@
     //llistar cursos
     function llistarTaulacursosPerAlumne(){
         $conexion = concetarBD();
-        var_dump(date('Y-m-d'));
-        $sql = "SELECT * FROM cursos WHERE `dataInici` > DATE (date('Y-m-d')) AND `CursProfessorFK` != 'NULL'";
+        $today=date('Y-m-d');
+        $dni=$_SESSION["usuari"]["dni"];
+        if($_SESSION["menu"]=="alta"){
+            $sql = "SELECT * FROM cursos C INNER JOIN matricules m ON c.codi = m.FKCursosCODI WHERE `dataInici` > DATE '$today' AND `FKAlumnesDNI` != '$dni'";
+        }
+        if($_SESSION["menu"]=="baixa"){
+            $sql = "SELECT * FROM cursos C INNER JOIN matricules m ON c.codi = m.FKCursosCODI WHERE `dataFinal` > DATE '$today' AND `FKAlumnesDNI` = '$dni'";
+        }
+        if($_SESSION["menu"]=="notes"){
+            $sql = "SELECT * FROM cursos C INNER JOIN matricules m ON c.codi = m.FKCursosCODI WHERE `dataFinal` < DATE '$today' AND `FKAlumnesDNI` = '$dni'";
+        }
+        
+
         $consulta = mysqli_query($conexion,$sql);
         if($consulta == false){
             mysqli_error($conexion);
@@ -62,7 +73,7 @@
             }else{
                 echo "<table>";
                     echo "<tr>";
-                        echo "<th>codi</th><th>nom</th><th>descripcio</th><th>hores</th><th>Data inici</th><th>Data final</th><th>Profesor</th><th>Estat</th>";
+                        echo "<th>codi</th><th>nom</th><th>descripcio</th><th>hores</th><th>Data inici</th><th>Data final</th><th>Profesor</th>";
                         if(isset($_GET["opcio"])){
                         if($_GET["opcio"]=="modificar"){
                             echo '<th>Modificar</td>';
@@ -83,11 +94,6 @@
                     echo "<td>$row[dataInici]</td>";
                     echo "<td>$row[dataFinal]</td>";
                     echo "<td>$row[CursProfessorFK]</td>";
-                    $estat = "Desactivat";
-                    if($row["estat"]==1){
-                        $estat = "Activat";
-                    }
-                    echo "<td>$estat</td>";
                     if(isset($_GET["opcio"])){
                     if($_GET["opcio"]=="modificar"){
                         echo '<td><a href="adminMenu.php?modificarCodi=' . $row["codi"] . '">Modificar</a></td>';

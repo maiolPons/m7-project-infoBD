@@ -18,6 +18,7 @@ if(isset($_GET["opcio"])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/styles.css">
+    <script src="alumne/scripts.js"></script> 
     <title>Document</title>
 </head>
 <body>
@@ -39,10 +40,12 @@ if(isset($_GET["opcio"])){
                 menuAlta();
             }
             if($_SESSION["menu"]=="baixa"){
+                matricular();
+                desmatricular();
                 menuAlta();
             }
             if($_SESSION["menu"]=="notes"){
-                menuAlta();
+                menuAlta(); 
             }
         }
         ?>

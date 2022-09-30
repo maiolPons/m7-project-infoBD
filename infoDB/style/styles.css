@@ -28,12 +28,17 @@ tr:nth-child(odd) {background-color: #acc7ed;}
     overflow: auto;
 }
 .buscadorTaula{
+    padding-left: 10%;
+    padding-top: 3%;
     width: 1400px;
     height: 500px;
-    Position: fixed;
-    top: 55%;
-    left: 60%;
-    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: 2fr 90% ;
+    grid-template-rows: 4fr 3fr 1fr;
+
+}
+.buscadorf{
+    grid-area: 3 / 2;
 }
 .contenidorTaula{
     width: 60%;

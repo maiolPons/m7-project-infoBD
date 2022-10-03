@@ -40,6 +40,7 @@ if(isset($_GET['menu'])!=null){
             principal();
         }
         if($_SESSION["menu"]=='Profesorat'){
+            mostrarMenuLateral();
             //mostrar menu opcions admin profesors
             Profesorat();
             //controll de errors creacio de profesor i creacio de profesors
@@ -47,6 +48,7 @@ if(isset($_GET['menu'])!=null){
             buscarNormal();
         }
         if($_SESSION["menu"]=='cursos'){
+            mostrarMenuLateral();
             //mostrar menu opcions admin cursos
             cursos();
             buscarNormal();

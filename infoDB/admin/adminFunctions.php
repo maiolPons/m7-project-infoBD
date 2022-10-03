@@ -15,18 +15,18 @@ function menuPrincipal(){
 function principal(){
     echo "PLACEHOLDER";
 }
+function mostrarMenuLateral(){
+    echo"<div class='navegaciolateral'>";
+        echo"<nav>";
+            echo '<a href="adminMenu.php?opcio=' . 'llistar' . '">llistar</a>';
+            echo '<a href="adminMenu.php?opcio=' . 'crear' . '">crear</a>';
+            echo '<a href="adminMenu.php?opcio=' . 'modificar' . '">modificar</a>';
+            echo '<a href="adminMenu.php?opcio=' . 'eliminar' . '">eliminar</a>';
+        echo"</nav>";
+    echo"</div>";
+}
 //menu opcions admin de profesorat
 function Profesorat(){
-    echo '<div class="navegaciolateral">';
-        echo"<div>";
-            echo"<nav>";
-                echo '<a href="adminMenu.php?opcio=' . 'llistar' . '">llistar</a>';
-                echo '<a href="adminMenu.php?opcio=' . 'crear' . '">crear</a>';
-                echo '<a href="adminMenu.php?opcio=' . 'modificar' . '">modificar</a>';
-                echo '<a href="adminMenu.php?opcio=' . 'eliminar' . '">eliminar</a>';
-            echo"</nav>";
-        echo"<div>";
-    echo '</div>';
     //en cas de modificacio
     formulariModificarProfesor();
     comprobacioErrorsModifcarProfesor();
@@ -42,17 +42,14 @@ function Profesorat(){
             ?>
             <div class="main">
                 <!--Formulari de creacio de profesorat-->
+                
                 <form action="adminmenu.php" method="POST" enctype="multipart/form-data">
-                    <label for="dni">DNI:</label><br>
-                    <input type="text" name="dni" require><br>
-                    <label for="contrasenya">Contrasenya:</label><br>
-                    <input type="password" name="contrasenya" require><br><br>
-                    <label for="nom">Nom:</label><br>
-                    <input type="text" name="nom" require><br><br>
-                    <label for="cognoms">Cognoms:</label><br>
-                    <input type="text" name="cognoms" require><br><br>
-                    <label for="text">Titol academic</label><br>
-                    <input type="titol" name="titol" require><br><br>
+                <h3>Crear profesor<h3>
+                    <input placeholder="DNI" type="text" name="dni" require><br>
+                    <input placeholder="Contrasenya" type="password" name="contrasenya" require><br><br>
+                    <input placeholder="Nom" type="text" name="nom" require><br><br>
+                    <input placeholder="Cognoms" type="text" name="cognoms" require><br><br>
+                    <input placeholder="Titol academin" type="titol" name="titol" require><br><br>
                     <label for="foto">Fotografia de perfil:</label><br>
                     <label for="foto">formats suportats: .jpg .jpeg .png:</label><br>
                     <input type="file" name="foto"><br><br>
@@ -375,13 +372,6 @@ function llistarTaulaProfessors(){
 }
 //menu opcions admin de cursos
 function cursos(){
-    
-    echo"<nav>";
-        echo '<a href="adminMenu.php?opcio=' . 'llistar' . '">llistar</a> |';
-        echo '<a href="adminMenu.php?opcio=' . 'crear' . '">crear</a> |';
-        echo '<a href="adminMenu.php?opcio=' . 'modificar' . '">modificar</a> |';
-        echo '<a href="adminMenu.php?opcio=' . 'eliminar' . '">Des/Activar</a> |';
-    echo"</nav>";
     //if(isset($_GET['opcio'])){
     //    $_SESSION["opcio"]=$_GET['opcio'];
     //}

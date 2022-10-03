@@ -49,6 +49,7 @@
     } 
     //llistar cursos
     function llistarTaulacursosPerAlumne(){
+
         $conexion = concetarBD();
         $today=date('Y-m-d');
         $dni=$_SESSION["usuari"]["dni"];
@@ -62,8 +63,7 @@
         if($_SESSION["menu"]=="notes"){
             $sql = "SELECT * FROM cursos C INNER JOIN matricules M ON c.codi = M.FKCursosCODI WHERE `dataFinal` < DATE '$today' AND `FKAlumnesDNI` = '$dni'";
         }
-        
-var_dump($sql);
+
         $consulta = mysqli_query($conexion,$sql);
         if($consulta == false){
             mysqli_error($conexion);
@@ -113,38 +113,44 @@ var_dump($sql);
         }
     }
     function desmatricular(){
-        if(isset($_COOKIE["desmatricular"])){
+        if(isset($_COOKIE["desmatricular"]) && $_COOKIE["desmatricular"] != "x"){
             $curs=$_COOKIE["desmatricular"];
             $dni=$_SESSION["usuari"]["dni"];
-            $sql = "UPDATE `matricules` SET `estatM`='false' WHERE `FKAlumnesDNI`='$dni' AND `FKCursosCODI`='$curs'";
-            var_dump($sql);
+            $sql = "UPDATE `matricules` SET `estatM`='0' WHERE `FKAlumnesDNI`='$dni' AND `FKCursosCODI`='$curs'";
             $conexion = concetarBD();
             $consulta = mysqli_query($conexion,$sql);
-            var_dump($sql);
+            setcookie("desmatricular", "x");
+            echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=menu.php">';
             if($consulta == false){
                 mysqli_error($conexion);
             }
+
+
         }
     }
     function matricular(){
-        if(isset($_COOKIE["matricular"])){
+        if(isset($_COOKIE["matricular"]) && $_COOKIE["matricular"] != "x"){
             $conexion = concetarBD();
             $curs=$_COOKIE["matricular"];
+            
             $dni=$_SESSION["usuari"]["dni"];
             $sql = "SELECT * FROM `matricules` WHERE `FKAlumnesDNI`='$dni' AND `FKCursosCODI`='$curs'";
             $consulta = mysqli_query($conexion,$sql);
             $registre = mysqli_fetch_row($consulta);
+
             if($registre == null){
                 $sql = "INSERT INTO `matricules`(`FKAlumnesDNI`, `FKCursosCODI`, `nota`, `estatM`) VALUES ('$dni','$curs','0','1')";
             }else{
-                $sql = "UPDATE `matricules` SET `estatM`='false' WHERE `FKAlumnesDNI`='$dni' AND `FKCursosCODI`='$curs'";
+                $sql = "UPDATE `matricules` SET `estatM`='1' WHERE `FKAlumnesDNI`='$dni' AND `FKCursosCODI`='$curs'";
             }
+            setcookie("matricular", "x");
+            echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=menu.php">';
             
-            var_dump($sql);
             $consulta = mysqli_query($conexion,$sql);
             if($consulta == false){
                 mysqli_error($conexion);
             }
+
         }
     }
 

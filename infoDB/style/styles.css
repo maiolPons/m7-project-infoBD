@@ -291,8 +291,19 @@ nav a:hover{
     display: flex;
     flex-direction: column;
 }
-.navegaciolateral nav a:first-child{
+.navegaciolateral nav a{
     background-color:#a7abdd;
     padding: 10px 25px;
-    border-radius: 0 0 30px 0px;
+    border-radius: 0 30px 30px 0;
+    text-decoration: none;
+    width: 100px;
+}
+.main{
+    width: 100%;
+}
+.main form{
+    margin: auto;
+    width: 500px;
+    padding-top: 80px;
+    text-align: center;
 }

@@ -37,10 +37,11 @@ if(isset($_GET["opcio"])){
         if($_SESSION["login"]=="alumne"){
             
             if($_SESSION["menu"]=="alta"){
+                matricular();
                 menuAlta();
             }
             if($_SESSION["menu"]=="baixa"){
-                matricular();
+                
                 desmatricular();
                 menuAlta();
             }

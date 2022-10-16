@@ -1,0 +1,408 @@
+
+body, html { width: 100%; height: 100%; }
+*{
+    font-family: 'Open Sans';
+    font-style: normal;
+
+}
+body{
+    background-color: #b8c0d9;
+    color: #3d314a;
+    font-size: 18px;
+}
+/* estils de les taules */
+table{
+    table-layout:auto;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #868ce0;
+}
+td:not(.fotoTd) {
+    padding-left: 5px;
+}
+tr:nth-child(even) {background-color: #c3bbf6;}
+tr:nth-child(odd) {background-color: #acc7ed;}
+.contenidorTaula2{
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+}
+.buscadorTaula{
+    grid-area: 1/1;
+    padding-left: 10%;
+    padding-top: 3%;
+    width: 1400px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 2fr 90% ;
+    grid-template-rows: 4fr 3fr 1fr;
+    padding-top: 120px;
+}
+.buscadorf{
+    grid-area: 3 / 2;
+}
+.contenidorTaula{
+    margin: auto;
+    width: 1000px;
+    height: 300px;
+    padding: 20px;
+    border: #a7abdd 3px solid;
+    border-radius: 30px;
+}
+.contenidorTaula3{
+    padding-top: 130px;
+    width: 1000px;
+    margin: auto;
+}
+
+.buscadorform{
+    width: 200px;
+    display: flex;
+    padding-bottom: 20px;
+}
+table tr td:not(:first-child) {
+    border-left: lightslategray solid 1px;
+} 
+th{
+    background-color: #868ce0;
+}
+.taulaCurs{
+    width: 800px;
+    height: 400px;
+    overflow:auto;
+    border: solid 3px #868ce0;
+    margin-top: 25px;
+    margin-left: 25px;
+    border-radius: 30px;
+    background-color: #a7abdd;
+}
+.encapsulador{
+    grid-area: 2/2;
+    width: 850px;
+    height: 450px;
+    margin-left: -200px;
+    border: solid 3px #868ce0;
+    border-radius: 30px;
+    background-color: #868ce0;
+}
+.profesorMain{
+    grid-area: 2/2;
+    margin-top: 100px;
+}
+/*Buscador*/
+input[name="buscar"] {
+    width: 300px;
+    height: 30px;
+    border-radius: 40px 0px 40px 0px;
+}
+input[value="buscar"] {
+    height: 38px;
+    border-radius: 40px 0px 40px 0px;
+}
+
+/* Fotografia */
+.fotoTd{
+    width: 50px;
+}
+.fotoLlista{
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.fotoMostra{
+    width: 50px;
+}
+/*login*/
+
+.loginformmain{
+    width: 620px;
+    height: 420px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #a7abdd;
+    border-radius: 40px;
+    background-color: #a7abdd;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.linkslogin a{
+    text-decoration: none;
+    color: #3d314a;
+    border: #868ce0 3px solid;
+    border-radius: 40px;
+    padding: 10px;
+    height: 50px;
+    background-color: #b8c0d9;
+}
+.linkslogin p{
+    font-size: 22px;
+    font-weight: bolder;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.formlogin form label{
+    font-size: 22px;
+    font-weight: bolder;
+}
+.formlogin{
+    padding-top: 80px;
+}
+.linkslogin{
+    padding-top: 80px;
+}
+.linkslogin a:hover{
+    background-color: #868ce0;
+    color: #a7abdd;
+}
+input{
+    border: solid 3px #868ce0;
+    border-radius: 40px;
+    width: 300px;
+    height: 50px;
+    background-color: #b8c0d9;
+    font-size: 18px;
+}
+input{
+    padding-left: 20px;
+}
+input[type=submit]{
+    width: 200px;
+    padding-right: 20px;
+}
+input[type=submit]:hover{
+    background-color: #868ce0;
+    color: #a7abdd;
+}
+
+.borderdiv{
+    border: #868ce0 5px solid;
+    width: 640px;
+    height: 440px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+}
+.bigBorder{
+    border: #868ce0 5px solid;
+    border-bottom: none;
+    border-top-left-radius: 40px ;
+    border-top-right-radius: 40px ;
+    width: 98%;
+    height: 100%;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.error{
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+/*formulari registrar alumne*/
+.registermainform{
+    margin: auto;
+    background-color: #a7abdd;
+    border-radius: 40px;
+    display: block;
+    width: 500px;
+    text-align: center;
+}
+.registermainform form input{
+    margin-bottom: 20px;
+}
+.registermainform h3{
+    padding: 20px;
+}
+.registerborder{
+    margin: auto;
+    border: #868ce0 solid 3px;
+    width: 535px;
+    height: 785px;
+    border-radius: 40px;
+}
+.globalRegistre{
+    
+    display: flex;
+}
+.backimg{
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #a7abdd;
+    width: 50px;
+    height: 50px;
+    border: #868ce0 solid 3px;
+    border-radius: 40px;
+}
+/*Footer*/
+footer{
+    background: rgb(167,171,221);
+    background: linear-gradient(180deg, rgba(167,171,221,1) 0%, rgba(144,149,212,1) 35%, rgba(93,101,193,1) 100%);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    margin-top: 0%;
+    line-height: 0;
+    display: flex;
+    padding-left: 10px;
+}
+footer p{
+    padding-left: 20px;
+}
+header{
+    background: rgb(167,171,221);
+    background: linear-gradient(180deg, rgba(167,171,221,1) 0%, rgba(144,149,212,1) 35%, rgba(93,101,193,1) 100%);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    line-height: -10;
+    margin-right: auto;
+    display: flex;
+    padding-left: 210px;
+    margin-left: -10px;
+    
+}
+/*menu de navegacio*/
+.logo{
+    width: 200px;
+    height: 200px;
+    border: black solid 1px;
+    background-color:#a7abdd;
+    border-radius: 0 0 100px 0;
+    margin-top: -10px;
+}
+.navegacio nav a{
+    background-color:#a7abdd;
+    padding: 10px 45px;
+    border-radius: 0 0 30px 30px;
+    text-decoration: none;
+    color: #3d314a;
+}
+.navegacio nav a:first-child{
+    background-color:#a7abdd;
+    padding: 10px 25px;
+    border-radius: 0 0 30px 0px;
+}
+.navegacio nav a:first-child:hover{
+    background-color:#868ce0;
+    padding: 10px 25px;
+    border-radius: 0 0 30px 0px;
+    color: #a7abdd;
+}
+nav a:hover{
+    background-color:#868ce0;
+    color: #a7abdd;
+}
+
+.navegacio{
+    padding-top: 30px;
+    position: fixed;
+    left: 0;
+    top: 30;
+    font-size: 24px;
+    display: flex;
+    flex-direction: row;
+}
+/*menu navegacio lateral*/
+.navegaciolateral{
+    position: fixed;
+    left: 0;
+    top: 100;
+    padding-top: 222px;
+}
+.navegaciolateral div{
+    border: #868ce0 solid 3px;
+}
+.navegaciolateral nav{
+    display: flex;
+    flex-direction: column;
+}
+.navegaciolateral nav a{
+    color: #3d314a;
+    background-color:#a7abdd;
+    padding: 10px 25px;
+    border-radius: 0 30px 30px 0;
+    text-decoration: none;
+    width: 100px;
+}
+.navegaciolateral a:hover{
+    background-color:#868ce0;
+    color: #a7abdd;
+}
+.main{
+    width: 100%;
+}
+.main form{
+    margin: auto;
+    width: 500px;
+    padding-top: 80px;
+    text-align: center;
+}
+.mainMenu{
+    width: 100%;
+    height:100%;
+    display: grid;
+    grid-template-columns: 40% 40% 20% ;
+    grid-template-rows: 10% 50% 40%;
+
+}
+.cursosP{
+    padding: 10px;
+    border-radius: 30px;
+    grid-area: 2/2;
+    width:100%;
+    height:100%;
+    border: #868ce0 solid 3px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #a7abdd;
+    margin-left: -200px;
+}
+.cursosP div{
+    width: 245px;
+    max-height: 50px;
+    border: #868ce0 solid 3px;
+    border-radius: 30px;
+    text-align: center;
+}
+.cursosP div a{
+    width: 100%;
+    position: relative;
+    top: 25%;
+    left: 00%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    color: #3d314a;
+    font-size:1.2vw;
+}
+.cursosP div:hover{
+    background-color:#868ce0;
+}
+.cursosP div a:hover{
+    color: #a7abdd;
+}
+/*Misatges*/
+.success{
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.errorFormulari{
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

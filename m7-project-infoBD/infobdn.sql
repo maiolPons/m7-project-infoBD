@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2022 at 04:30 PM
+-- Generation Time: Oct 18, 2022 at 09:50 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -121,7 +121,7 @@ INSERT INTO `matricules` (`FKAlumnesDNI`, `FKCursosCODI`, `nota`, `estatM`) VALU
 ('maiol', 5, NULL, 1),
 ('maiol', 7, NULL, 1),
 ('maiol', 8, 3, 1),
-('maiol', 99, NULL, 1);
+('maiol', 99, NULL, 0);
 
 -- --------------------------------------------------------
 

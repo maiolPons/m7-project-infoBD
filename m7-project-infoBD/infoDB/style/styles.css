@@ -41,6 +41,12 @@ tr:nth-child(odd) {background-color: #acc7ed;}
 .buscadorf{
     grid-area: 3 / 2;
 }
+.warning{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .contenidorTaula{
     margin: auto;
     width: 1000px;

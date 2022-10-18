@@ -211,7 +211,7 @@
                     echo "<div class='taulaCurs'>";
                     echo "<table>";
                     echo "<tr>";
-                        echo "<th>dni</th><th>nom</th><th>cognoms</th><th>edat</th><th>Correu electronic</th><th>Posar nota</th><th>nota</th>";
+                        echo "<th>dni</th><th>nom</th><th>cognoms</th><th>edat</th><th>Correu electronic</th><th>imatge</th><th>Posar nota</th><th>nota</th>";
                         echo "</tr>";
                     }
                 while($row = mysqli_fetch_array($consulta)){
@@ -221,6 +221,7 @@
                     echo "<td>$row[cognom]</td>";
                     echo "<td>$row[edat]</td>";
                     echo "<td>$row[correuElectronic]</td>";
+                    echo "<td class='fotoTd'><img class='fotoLlista' src='media/alumnes/$row[fotografia]'></td>";
                     echo '<td><button onclick="posarNota(\''.$row['dni'].'\',\''.$curs.'\')">Posar Nota</button></td>';
                     echo "<td>$row[nota]</td>";
                     echo "</tr>";

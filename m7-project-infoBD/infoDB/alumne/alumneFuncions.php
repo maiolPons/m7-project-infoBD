@@ -73,7 +73,7 @@
                 $sql = "SELECT * FROM cursos C WHERE `dataInici` > DATE '$today' AND estat = '1' AND CursProfessorFK IS NOT NULL  AND codi NOT IN (SELECT FKCursosCODI FROM matricules WHERE FKAlumnesDNI = '$dni' AND estatM = '1') AND (`codi`LIKE'$varQuery' or `nom`LIKE'$varQuery' or `descripcio`LIKE'$varQuery' or `CursProfessorFK`LIKE'$varQuery')";
             }
         }
-        var_dump($sql);
+        //var_dump($sql);
         $consulta = mysqli_query($conexion,$sql);
         if($consulta == false){
             mysqli_error($conexion);

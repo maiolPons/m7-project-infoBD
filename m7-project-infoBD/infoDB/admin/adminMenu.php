@@ -47,7 +47,6 @@ if(isset($_GET['opcio'])!=null){
         <header><?php echo "Benvingut administrador";  ?></header>
         <?php
         menuPrincipal();
-        var_dump($_SESSION["opcio"]);
         
         if($_SESSION["menu"]=='principal'){
             principal();

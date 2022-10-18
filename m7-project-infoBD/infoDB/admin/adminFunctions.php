@@ -568,7 +568,7 @@ function comprobacioErrorsModifcarCursos(){
         }
         else{
             echo "<p class='warning'>Tots el camps son obligatoris!</p>";
-            var_dump($_POST);
+            //var_dump($_POST);
         }
     }
 }
